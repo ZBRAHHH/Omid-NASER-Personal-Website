@@ -1,8 +1,8 @@
-// assets/js/pensine.js
+// assets/js/pensine.js (CDN-compatible version)
 
-import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+const THREE = window.THREE;
+const FontLoader = THREE.FontLoader;
+const TextGeometry = THREE.TextGeometry;
 
 let scene, camera, renderer;
 let pensineParticles, risingParticles, glowSphere, textParticles;
@@ -34,10 +34,8 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
 
-  // Pensine bowl particles
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(pensineCount * 3);
-
   for (let i = 0; i < pensineCount; i++) {
     const theta = Math.random() * 2 * Math.PI;
     const phi = Math.acos(Math.random());
@@ -49,7 +47,6 @@ function init() {
     positions[i * 3 + 1] = y;
     positions[i * 3 + 2] = z;
   }
-
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   const material = new THREE.PointsMaterial({
     color: 0x66ccff,
@@ -62,7 +59,6 @@ function init() {
   pensineParticles = new THREE.Points(geometry, material);
   scene.add(pensineParticles);
 
-  // Glowing aura
   const glowGeo = new THREE.SphereGeometry(40, 32, 32);
   const glowMat = new THREE.MeshBasicMaterial({
     color: 0x00ffff,
@@ -75,7 +71,6 @@ function init() {
   glowSphere.position.y = -10;
   scene.add(glowSphere);
 
-  // Rising particles
   const riseGeo = new THREE.BufferGeometry();
   const risePos = new Float32Array(risingCount * 3);
   for (let i = 0; i < risingCount; i++) {
@@ -95,7 +90,6 @@ function init() {
   risingParticles = new THREE.Points(riseGeo, riseMat);
   scene.add(risingParticles);
 
-  // Text particles
   const loader = new FontLoader();
   loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
     const textGeo = new TextGeometry('Omid Naser', {
@@ -104,7 +98,6 @@ function init() {
       height: 1,
     });
     textGeo.center();
-
     const textMat = new THREE.PointsMaterial({
       color: 0x00ffff,
       size: 1.5,
@@ -118,8 +111,6 @@ function init() {
   });
 
   window.addEventListener('resize', onWindowResize, false);
-
-  // Interaction - glow pulse on click
   window.addEventListener('click', () => {
     glowMat.opacity = 0.2;
     setTimeout(() => glowMat.opacity = 0.08, 300);
@@ -138,7 +129,6 @@ function animate() {
   }
   pos.needsUpdate = true;
 
-  // Cycle text opacity
   if (textParticles) {
     if (textFadeIn) {
       textOpacity += 0.01;
