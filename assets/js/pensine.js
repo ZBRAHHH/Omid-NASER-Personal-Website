@@ -1,49 +1,177 @@
-// Initialisation de la scène
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-  75,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  1000
-);
-camera.position.z = 7;
+// assets/js/pensine.js
 
-const renderer = new THREE.WebGLRenderer({
-  canvas: document.getElementById("pensine-canvas"),
-  alpha: true,
-  antialias: true,
-});
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+import * as THREE from 'three';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-// Création de la géométrie sphérique
-const geometry = new THREE.SphereGeometry(2.5, 80, 80);
+let scene, camera, renderer;
+let pensineParticles, risingParticles, glowSphere, textParticles;
+let textCycleTimer = 0;
+let textFadeIn = true;
+let textOpacity = 0;
+const pensineCount = 4000;
+const risingCount = 600;
 
-// Matériau en particules
-const material = new THREE.PointsMaterial({
-  color: 0x88ccff,
-  size: 0.05,
-  transparent: true,
-  opacity: 0.8,
-  depthWrite: false,
-  blending: THREE.AdditiveBlending,
-});
-
-const points = new THREE.Points(geometry, material);
-scene.add(points);
-
-// Animation
-function animate() {
-  requestAnimationFrame(animate);
-  points.rotation.y += 0.0025;
-  points.rotation.x += 0.001;
-  renderer.render(scene, camera);
-}
+init();
 animate();
 
-// Responsive
-window.addEventListener("resize", () => {
+function init() {
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+  camera.position.z = 120;
+
+  renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('pensine-canvas'),
+    alpha: true,
+    antialias: true
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  // Pensine bowl particles
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(pensineCount * 3);
+
+  for (let i = 0; i < pensineCount; i++) {
+    const theta = Math.random() * 2 * Math.PI;
+    const phi = Math.acos(Math.random());
+    const radius = 30 + Math.random() * 10;
+    const x = radius * Math.sin(phi) * Math.cos(theta);
+    const y = -radius * Math.cos(phi) * 0.8;
+    const z = radius * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3] = x;
+    positions[i * 3 + 1] = y;
+    positions[i * 3 + 2] = z;
+  }
+
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const material = new THREE.PointsMaterial({
+    color: 0x66ccff,
+    size: 1.2,
+    transparent: true,
+    opacity: 0.9,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  pensineParticles = new THREE.Points(geometry, material);
+  scene.add(pensineParticles);
+
+  // Glowing aura
+  const glowGeo = new THREE.SphereGeometry(40, 32, 32);
+  const glowMat = new THREE.MeshBasicMaterial({
+    color: 0x00ffff,
+    transparent: true,
+    opacity: 0.08,
+    blending: THREE.AdditiveBlending,
+    side: THREE.BackSide
+  });
+  glowSphere = new THREE.Mesh(glowGeo, glowMat);
+  glowSphere.position.y = -10;
+  scene.add(glowSphere);
+
+  // Rising particles
+  const riseGeo = new THREE.BufferGeometry();
+  const risePos = new Float32Array(risingCount * 3);
+  for (let i = 0; i < risingCount; i++) {
+    risePos[i * 3] = (Math.random() - 0.5) * 10;
+    risePos[i * 3 + 1] = 0;
+    risePos[i * 3 + 2] = (Math.random() - 0.5) * 10;
+  }
+  riseGeo.setAttribute('position', new THREE.BufferAttribute(risePos, 3));
+  const riseMat = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 1,
+    transparent: true,
+    opacity: 0.7,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  risingParticles = new THREE.Points(riseGeo, riseMat);
+  scene.add(risingParticles);
+
+  // Text particles
+  const loader = new FontLoader();
+  loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+    const textGeo = new TextGeometry('Omid Naser', {
+      font: font,
+      size: 8,
+      height: 1,
+    });
+    textGeo.center();
+
+    const textMat = new THREE.PointsMaterial({
+      color: 0x00ffff,
+      size: 1.5,
+      transparent: true,
+      opacity: 0,
+      blending: THREE.AdditiveBlending
+    });
+    textParticles = new THREE.Points(textGeo, textMat);
+    textParticles.position.y = 50;
+    scene.add(textParticles);
+  });
+
+  window.addEventListener('resize', onWindowResize, false);
+
+  // Interaction - glow pulse on click
+  window.addEventListener('click', () => {
+    glowMat.opacity = 0.2;
+    setTimeout(() => glowMat.opacity = 0.08, 300);
+  });
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  const pos = risingParticles.geometry.attributes.position;
+  for (let i = 0; i < risingCount; i++) {
+    pos.array[i * 3 + 1] += 0.2;
+    if (pos.array[i * 3 + 1] > 80) {
+      pos.array[i * 3 + 1] = 0;
+    }
+  }
+  pos.needsUpdate = true;
+
+  // Cycle text opacity
+  if (textParticles) {
+    if (textFadeIn) {
+      textOpacity += 0.01;
+      if (textOpacity >= 0.9) {
+        textOpacity = 0.9;
+        textCycleTimer++;
+        if (textCycleTimer > 100) {
+          textFadeIn = false;
+        }
+      }
+    } else {
+      textOpacity -= 0.01;
+      if (textOpacity <= 0) {
+        textOpacity = 0;
+        textCycleTimer++;
+        if (textCycleTimer > 200) {
+          textCycleTimer = 0;
+          textFadeIn = true;
+        }
+      }
+    }
+    textParticles.material.opacity = textOpacity;
+  }
+
+  pensineParticles.rotation.y += 0.0015;
+  pensineParticles.rotation.x = Math.sin(Date.now() * 0.0002) * 0.02;
+  glowSphere.rotation.y += 0.0008;
+
+  renderer.render(scene, camera);
+}
+
+function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
-});
+}
