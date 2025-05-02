@@ -1,8 +1,8 @@
 // assets/js/pensine.js (CDN-compatible version)
 
 const THREE = window.THREE;
-const FontLoader = THREE.FontLoader;
-const TextGeometry = THREE.TextGeometry;
+const FontLoader = window.FontLoader;
+const TextGeometry = window.TextGeometry;
 
 let scene, camera, renderer;
 let pensineParticles, risingParticles, glowSphere, textParticles;
