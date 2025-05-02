@@ -26,12 +26,15 @@
     <canvas id="pensine-canvas"></canvas>
   </main>
 
-  <script src="https://threejs.org/build/three.min.js"></script>
-  <script src="https://threejs.org/examples/js/loaders/FontLoader.js"></script>
-  <script src="https://threejs.org/examples/js/geometries/TextGeometry.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- Scripts CDN correctement différés -->
+  <script src="https://threejs.org/build/three.min.js" defer></script>
+  <script src="https://threejs.org/examples/js/loaders/FontLoader.js" defer></script>
+  <script src="https://threejs.org/examples/js/geometries/TextGeometry.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+
+  <!-- Script pensine chargé en dernier, sans defer -->
   <script src="assets/js/pensine.js"></script>
-  
+
   <script>
     // Désactiver clic droit et copier/coller
     document.addEventListener('contextmenu', e => e.preventDefault());
