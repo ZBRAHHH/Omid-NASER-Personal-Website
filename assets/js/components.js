@@ -1,7 +1,14 @@
 // Fonction pour charger les composants HTML
 async function loadComponent(elementId, componentPath) {
     try {
-        const response = await fetch(componentPath);
+        // Déterminer le chemin de base pour les composants
+        let basePath = '';
+        // Si nous sommes dans un sous-dossier (comme articles/), ajuster le chemin
+        if (window.location.pathname.includes('/articles/')) {
+            basePath = '../';
+        }
+
+        const response = await fetch(basePath + componentPath);
         const html = await response.text();
         document.getElementById(elementId).innerHTML = html;
 
@@ -28,5 +35,7 @@ async function loadComponent(elementId, componentPath) {
 
 // Charger le header quand le document est prêt
 document.addEventListener('DOMContentLoaded', () => {
-    loadComponent('header-container', '/components/header.html');
+    // Déterminer le chemin correct pour le header
+    let headerPath = 'components/header.html';
+    loadComponent('header-container', headerPath);
 }); 
