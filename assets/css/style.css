@@ -1,13 +1,15 @@
 /* STYLE GLOBAL */
 
-/* Importation de la police Graphik depuis Google Fonts */
+/* Importation de la police Inter depuis Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body {
     margin: 0;
     background: #ffffff;
     color: #000;
-    font-family: "Graphik", "Inter", sans-serif;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
     transition: background 0.5s, color 0.5s;
   }
   
@@ -35,13 +37,17 @@ body {
   }
   
   .content h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    font-weight: 700;
     margin-bottom: 1rem;
+    letter-spacing: -0.02em;
   }
   
   .content p {
-    font-size: 1.2rem;
-    opacity: 0.8;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    font-weight: 400;
   }
   
   /* CONTAINER DE TITRE */
@@ -52,19 +58,17 @@ body {
   }
   
   .title-container h1 {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin: 0;
     padding: 0;
-    letter-spacing: -0.02em;
-    color: #0d2762;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: color 0.5s, text-shadow 0.5s;
+    letter-spacing: -0.03em;
+    color: #000;
+    line-height: 1.1;
   }
   
   .dark-mode .title-container h1 {
-    color: #3b82f6;
-    text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+    color: #fff;
   }
   
   /* HEADER FIXE */
@@ -85,22 +89,23 @@ body {
   }
   
   .logo {
-    font-weight: bold;
-    font-size: 20px;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0;
   }
   
   nav a {
     color: white;
     margin: 0 10px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
     padding: 8px 12px;
     border-radius: 4px;
     position: relative;
     overflow: hidden;
+    letter-spacing: 0.01em;
   }
   
   nav a:before {
