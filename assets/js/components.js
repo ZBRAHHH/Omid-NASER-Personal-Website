@@ -7,9 +7,19 @@ async function loadComponent(elementId, componentPath) {
 
         // Réinitialiser les événements du mode sombre après le chargement du header
         if (elementId === 'header-container') {
-            document.getElementById('mode-toggle').onclick = () => {
-                document.body.classList.toggle('dark-mode');
-            };
+            // Vérifier si le mode sombre est déjà activé
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const checkbox = document.getElementById('checkbox');
+            
+            // Si le mode sombre est activé, cocher la case
+            if (checkbox) {
+                checkbox.checked = isDarkMode;
+                
+                // Ajouter l'écouteur d'événement pour le changement de thème
+                checkbox.addEventListener('change', function() {
+                    document.body.classList.toggle('dark-mode');
+                });
+            }
         }
     } catch (error) {
         console.error('Erreur lors du chargement du composant:', error);
