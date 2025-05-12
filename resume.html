@@ -6,30 +6,16 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">ON</div>
-    <nav>
-      <a href="index.html">Omid NASER</a>
-      <a href="resume.html">Resume</a>
-      <a href="financial.html">Financial Services</a>
-      <a href="data-ai.html">Data & AI</a>
-      <a href="advocacy.html">Advocacy</a>
-      <a href="philosophy.html">Philosophy</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div id="mode-toggle">🌓</div>
-  </header>
+  <!-- Container pour le header -->
+  <div id="header-container"></div>
 
   <main>
     <h1 style="margin-top: 100px; text-align:center;">Coming soon…</h1>
   </main>
 
+  <!-- Scripts locaux -->
+  <script src="assets/js/components.js"></script>
   <script>
-    // Mode sombre/clair
-    document.getElementById("mode-toggle").onclick = () => {
-      document.body.classList.toggle("dark-mode");
-    };
-
     // Protection contenu
     document.addEventListener("contextmenu", e => e.preventDefault());
     document.addEventListener("copy", e => e.preventDefault());
