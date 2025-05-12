@@ -44,6 +44,29 @@ body {
     opacity: 0.8;
   }
   
+  /* CONTAINER DE TITRE */
+  .title-container {
+    text-align: center;
+    margin-bottom: 3rem;
+    width: 100%;
+  }
+  
+  .title-container h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    letter-spacing: -0.02em;
+    color: #0d2762;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: color 0.5s, text-shadow 0.5s;
+  }
+  
+  .dark-mode .title-container h1 {
+    color: #3b82f6;
+    text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+  }
+  
   /* HEADER FIXE */
   header {
     position: fixed;
