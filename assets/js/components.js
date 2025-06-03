@@ -27,6 +27,11 @@ async function loadComponent(elementId, componentPath) {
                     document.body.classList.toggle('dark-mode');
                 });
             }
+
+            // Charger le script main.js pour le menu mobile
+            const mainScript = document.createElement('script');
+            mainScript.src = basePath + 'assets/js/main.js';
+            document.body.appendChild(mainScript);
         }
     } catch (error) {
         console.error('Erreur lors du chargement du composant:', error);
