@@ -507,3 +507,97 @@ h1 + h2 {
     transform: scale(0.45);
   }
 }
+
+/* Hamburger menu button */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: calc(100vh - 60px);
+    background: linear-gradient(to bottom, #0d2762, #1e48a1);
+    flex-direction: column;
+    padding: 20px;
+    transition: right 0.3s ease;
+    gap: 20px;
+  }
+
+  nav.active {
+    right: 0;
+  }
+
+  nav a {
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .theme-switch-wrapper {
+    margin: 0 15px 0 15px;
+    position: relative;
+    z-index: 1002;
+  }
+
+  /* Animation du menu hamburger */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Ajustement du header pour le mobile */
+  header {
+    padding: 0 15px;
+    justify-content: space-between;
+  }
+
+  /* Réorganisation des éléments du header */
+  header > * {
+    order: 1;
+  }
+
+  .logo {
+    order: 0;
+  }
+
+  .menu-toggle {
+    order: 2;
+  }
+
+  .theme-switch-wrapper {
+    order: 3;
+  }
+}
