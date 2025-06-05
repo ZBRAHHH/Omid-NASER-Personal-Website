@@ -1,3 +1,6 @@
+// Chargement des dépendances
+document.write('<script src="assets/js/dependencies.js"></script>');
+
 // Fonction pour charger les composants HTML
 async function loadComponent(elementId, componentPath) {
     try {
