@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Article</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        /* Variables CSS pour les couleurs de l'article */
+        :root {
+            /* Mode clair */
+            --article-text-color-light: #333; /* Paragraphes, listes, citations, intro, sections, sous-titres */
+            --article-title-main-color-light: #454545; /* Titre principal (changé d'un gris foncé) */
+            --article-quote-bg-light: #f8f9fa; /* Fond de citation */
+            --article-quote-border-light: #3bb3f6; /* Bordure de citation */
+            --article-link-color-light: #3bb3f6; /* Liens */
+            --article-link-hover-color-light: #1e56bc; /* Liens (survol) */
+            --article-metadata-color-light: #555; /* Texte métadonnées */
+            --article-metadata-border-light: #eee; /* Bordure métadonnées */
+            --article-bg-light: #fff; /* Fond de l'article */
+        }
+
+        /* Variables CSS pour les couleurs de l'article en mode sombre */
+        .dark-mode {
+            --article-text-color-dark: #e0e0e0;
+            --article-title-main-color-dark: #6ee7ff;
+            --article-quote-bg-dark: #2a2a2a;
+            --article-quote-border-dark: #3bb3f6; /* Identique au mode clair ou ajuster si besoin */
+            --article-link-color-dark: #3bb3f6; /* Identique au mode clair ou ajuster si besoin */
+            --article-link-hover-color-dark: #6ee7ff;
+            --article-metadata-color-dark: #e0e0e0;
+            --article-metadata-border-dark: #444;
+            --article-bg-dark: #1a1a1a;
+
+            /* Appliquer les variables du mode sombre */
+            color: var(--article-text-color-dark); /* Applique la couleur de texte par défaut pour le mode sombre */
+            background-color: var(--article-bg-dark); /* Applique la couleur de fond par défaut */
+        }
+
+        /* Reset et styles de base - Utiliser les variables du mode clair par défaut */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            /* Utiliser les variables */
+            color: var(--article-text-color-light);
+            background-color: var(--article-bg-light);
+        }
+
+        /* Container principal - Pas de couleur spécifique ici, hérite de body */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Contenu de l'article */
+        .article-content {
+            /* Utiliser les variables */
+            background: var(--article-bg-light);
+            /* Retiré max-width comme demandé précédemment */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0 auto; /* Centrage horizontal */
+        }
+
+        /* Titre principal */
+        .article-title {
+            font-size: 32px;
+            margin-bottom: 0.5rem;
+            /* Appliquer le dégradé en mode clair (Bleu ciel -> Bleu très foncé) */
+            background: linear-gradient(to right, #3bb3f6, #0d2762);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Rend le texte transparent pour montrer le dégradé */
+            /* La couleur en mode sombre est gérée par la règle .dark-mode .article-title */
+        }
+
+        /* Introduction */
+        .article-intro {
+            font-size: 16px;
+            margin-bottom: 2rem;
+            /* Utiliser la variable */
+            color: var(--article-text-color-light);
+        }
+
+        /* Sections */
+        .article-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 26px;
+            margin-bottom: 0.6rem;
+            /* Utiliser la variable */
+            color: var(--article-text-color-light);
+            font-weight: 700;
+        }
+
+        /* Sous-titres */
+        .subsection-title {
+            font-size: 20px;
+            margin: 1.5rem 0 0.3rem;
+            /* Utiliser la variable */
+            color: var(--article-text-color-light);
+            font-weight: 700;
+        }
+
+        /* Paragraphes */
+        .article-content p {
+            font-size: 16px;
+            margin-bottom: 1rem;
+            /* Utiliser la variable */
+            color: var(--article-text-color-light);
+        }
+
+        /* Listes */
+        .article-content ul,
+        .article-content ol {
+            font-size: 16px;
+            margin: 1rem 0 1.5rem 2rem;
+            /* Utiliser la variable */
+            color: var(--article-text-color-light);
+        }
+
+        .article-content li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Citations */
+        .article-content blockquote {
+            font-size: 16px;
+            margin: 1rem 0;
+            padding: 1rem 1.5rem;
+            /* Utiliser les variables */
+            border-left: 4px solid var(--article-quote-border-light);
+            background-color: var(--article-quote-bg-light);
+            /* Utiliser la variable */
+            color: var(--article-text-color-light);
+        }
+
+        /* Liens */
+        .article-content a {
+            font-size: 16px;
+            /* Utiliser la variable */
+            color: var(--article-link-color-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .article-content a:hover {
+            /* Utiliser la variable */
+            color: var(--article-link-hover-color-light);
+            text-decoration: underline;
+        }
+
+        /* Mode sombre - Redéfinition des styles si les variables ne suffisent pas */
+        .dark-mode .article-content {
+            /* La couleur de fond est déjà appliquée par .dark-mode :root */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .dark-mode .article-title {
+            /* La couleur est appliquée par .dark-mode :root via var(--article-title-main-color-dark) */
+             color: var(--article-title-main-color-dark);
+        }
+
+        .dark-mode .section-title,
+        .dark-mode .subsection-title,
+        .dark-mode .article-content p,
+        .dark-mode .article-content ul,
+        .dark-mode .article-content ol,
+        .dark-mode .article-content blockquote {
+            /* La couleur est appliquée par .dark-mode :root via var(--article-text-color-dark) */
+            color: var(--article-text-color-dark);
+        }
+
+        .dark-mode .article-content a {
+             /* Utiliser les variables du mode sombre */
+             color: var(--article-link-color-dark);
+        }
+
+        .dark-mode .article-content a:hover {
+            /* Utiliser les variables du mode sombre */
+            color: var(--article-link-hover-color-dark);
+        }
+
+        .dark-mode .article-content blockquote {
+            /* Utiliser les variables du mode sombre */
+            background-color: var(--article-quote-bg-dark);
+            border-left-color: var(--article-quote-border-dark);
+             color: var(--article-text-color-dark); /* S'assurer que le texte de la citation est aussi en couleur sombre */
+        }
+
+        /* Styles Métadonnées Footer */
+        .article-metadata-footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            /* Utiliser les variables */
+            border-top: 1px solid var(--article-metadata-border-light);
+            font-size: 12px;
+            /* Utiliser la variable */
+            color: var(--article-metadata-color-light);
+        }
+
+        .article-metadata-footer p {
+            margin-bottom: 0;
+        }
+
+        .dark-mode .article-metadata-footer {
+            /* Utiliser les variables du mode sombre */
+            border-top-color: var(--article-metadata-border-dark);
+             color: var(--article-metadata-color-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-content {
+                padding: 1.5rem;
+            }
+
+            .article-title {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .subsection-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-title {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .subsection-title {
+                font-size: 22px;
+            }
+
+            .article-content p,
+            .article-content ul,
+            .article-content ol,
+            .article-content blockquote {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CONTAINER_HEADER [POSITION_1]: En-tête du site avec navigation -->
+    <div id="header-container"></div>
+
+    <main class="article-container">
+        <article class="article-content">
+            <!-- Titre principal -->
+            <h1 class="article-title">L'Impact de l'Intelligence Artificielle sur les Marchés Financiers</h1>
+
+            <!-- Introduction -->
+            <p class="article-intro">
+                L'intelligence artificielle transforme radicalement le paysage des marchés financiers. 
+                Des algorithmes de trading aux analyses prédictives, découvrons comment ces technologies 
+                révolutionnent notre approche de l'investissement.
+            </p>
+
+            <!-- Première section -->
+            <section class="article-section">
+                <h2 class="section-title">L'IA dans le Trading Algorithmique</h2>
+                
+                <p>
+                    Les algorithmes de trading basés sur l'IA analysent des volumes massifs de données 
+                    en temps réel, identifiant des opportunités que l'œil humain pourrait manquer.
+                </p>
+
+                <h3 class="subsection-title">Avantages des Systèmes de Trading IA</h3>
+                
+                <ul>
+                    <li>Analyse en temps réel de grandes quantités de données</li>
+                    <li>Détection de patterns complexes</li>
+                    <li>Exécution de trades à haute fréquence</li>
+                    <li>Réduction des biais émotionnels</li>
+                </ul>
+            </section>
+
+            <!-- Deuxième section -->
+            <section class="article-section">
+                <h2 class="section-title">L'Analyse Prédictive et la Gestion des Risques</h2>
+
+                <p>
+                    L'IA permet d'anticiper les mouvements de marché et d'optimiser la gestion des risques 
+                    grâce à des modèles prédictifs sophistiqués.
+                </p>
+
+                <blockquote>
+                    "L'intelligence artificielle ne remplace pas l'intelligence humaine, elle l'amplifie. 
+                    Dans le domaine financier, c'est un outil puissant qui, bien utilisé, peut transformer 
+                    la façon dont nous investissons."
+                </blockquote>
+
+                <h3 class="subsection-title">Applications Concrètes</h3>
+
+                <p>
+                    Les applications de l'IA dans la finance sont nombreuses et variées. 
+                    <a href="#">Découvrez nos analyses détaillées</a> sur les différentes 
+                    applications de l'IA dans le secteur financier.
+                </p>
+            </section>
+
+            <!-- Métadonnées (Date et Catégorie/Tags) -->
+            <div class="article-metadata-footer">
+                <p><strong>Date :</strong> [Date de l'article]</p>
+                <p><strong>Catégorie/Tags :</strong> [Tags de l'article]</p>
+            </div>
+        </article>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/components.js"></script>
+    <script src="../../assets/js/menu_hamburger.js"></script>
+
+    <!-- Protection -->
+    <script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('copy', e => e.preventDefault());
+    </script>
+</body>
+</html> 
