@@ -146,6 +146,18 @@ body {
     z-index: 1010;
   }
   
+  /* Style pour le bouton de fermeture (croix) */
+  .close-menu-button {
+    position: absolute;
+    top: 1.5rem; /* Ajuster la distance par rapport au haut */
+    left: 50%; /* Centre horizontalement */
+    transform: translateX(-50%); /* Ajustement pour un centrage parfait */
+    font-size: 2rem; /* Taille de la croix */
+    color: white; /* Couleur de la croix */
+    cursor: pointer;
+    z-index: 1011; /* S'assure qu'il est au-dessus de la nav */
+  }
+  
   nav a {
     display: block;
     color: #fff;

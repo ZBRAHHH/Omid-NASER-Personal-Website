@@ -6,16 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     const overlay = document.querySelector('.menu-overlay');
+    const closeButton = document.querySelector('.close-menu-button'); // Sélection du bouton de fermeture
 
     // Vérification que tous les éléments sont présents. Si non, on sort.
-    if (!menuToggle || !nav || !overlay) {
-      console.error('Éléments du menu non trouvés. Réessaie dans un instant...', { menuToggle: menuToggle, nav: nav, overlay: overlay });
+    if (!menuToggle || !nav || !overlay || !closeButton) { // Ajouter le bouton de fermeture à la vérification
+      console.error('Éléments du menu non trouvés. Réessaie dans un instant...', { menuToggle: menuToggle, nav: nav, overlay: overlay, closeButton: closeButton });
       // Optionnellement, on peut réessayer après un court délai si on pense qu'ils seront ajoutés dynamiquement
       setTimeout(initializeMenu, 200); // Augmenter légèrement le délai
       return;
     }
 
-    console.log('Éléments du menu trouvés : ', { menuToggle: menuToggle, nav: nav, overlay: overlay });
+    console.log('Éléments du menu trouvés : ', { menuToggle: menuToggle, nav: nav, overlay: overlay, closeButton: closeButton });
 
     // Fonction pour ouvrir/fermer le menu
     function toggleMenu() {
@@ -40,6 +41,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (nav.classList.contains('active')) {
         toggleMenu();
       }
+    });
+
+    // Ajouter un écouteur d'événement pour le bouton de fermeture
+    closeButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        console.log('Clic sur le bouton de fermeture');
+        if (nav.classList.contains('active')) {
+            toggleMenu();
+        }
     });
 
     // Fermer le menu au clic sur un lien
