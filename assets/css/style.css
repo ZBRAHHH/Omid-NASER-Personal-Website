@@ -170,7 +170,7 @@ body {
     height: 1.5rem;
     cursor: pointer;
     z-index: 1001;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
   }
   
   .menu-toggle span {
@@ -276,7 +276,7 @@ body {
     margin: 0;
     position: static;
     height: 100%;
-    padding-right: 0;
+    padding-right: 0.5rem;
   }
   
   .theme-switch-label {
