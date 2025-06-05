@@ -1,13 +1,17 @@
 /* STYLE GLOBAL */
 
-/* Importation de la police Roboto depuis Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* Importation de la police Inter depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+html {
+  font-size: 100%; /* Taille de base pour les écrans larges (16px) */
+}
 
 body {
     margin: 0;
     background: #ffffff;
     color: #000;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     line-height: 1.6;
     transition: background 0.5s, color 0.5s;
@@ -215,6 +219,9 @@ body {
   
   /* Media query pour le menu mobile */
   @media (max-width: 900px) {
+    html {
+      font-size: 90%; /* Réduit la taille de base pour les écrans moyens */
+    }
     header {
       padding: 0 2rem 0 1.5rem;
     }
@@ -258,6 +265,9 @@ body {
   }
   
   @media (max-width: 600px) {
+    html {
+      font-size: 85%; /* Réduit davantage pour les petits écrans */
+    }
     header {
       padding: 0 1.5rem 0 1rem;
     }
