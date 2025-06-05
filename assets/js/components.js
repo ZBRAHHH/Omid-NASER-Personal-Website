@@ -38,4 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Déterminer le chemin correct pour le header
     let headerPath = 'components/header.html';
     loadComponent('header-container', headerPath);
+
+    // Charger le footer quand le document est prêt
+    let footerPath = 'components/footer.html';
+    loadComponent('footer-placeholder', footerPath);
 }); 
