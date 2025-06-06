@@ -1,44 +1,61 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Omid NASER</title>
-  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omid NASER</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Style pour l'indicateur de chargement -->
+    <style>
+        #header-container {
+            min-height: 60px;
+            position: relative;
+        }
+        #header-container:empty::before {
+            content: "Chargement du header...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-  <!-- CONTAINER_HEADER [POSITION_1]: En-tête du site avec navigation -->
-  <div id="header-container"></div>
+    <!-- CONTAINER_HEADER [POSITION_1]: En-tête du site avec navigation -->
+    <div id="header-container"></div>
 
-  <main>
-    <!-- CONTAINER_TITLE_OMID_NASER [POSITION_2]: Titre principal "Omid Naser" -->
-    <div id="title-container-omid-naser" class="title-container">
-      <h1><strong>Omid</strong> Naser</h1>
-      <div class="title-row">
-        <h2>Lore Ipsum</h2>
-        <div class="title-photo-placeholder">
-          <img src="assets/img/portrait.jpg" alt="Portrait Omid Naser" class="title-photo-img" />
+    <main class="layout-container">
+        <!-- CONTAINER_TITLE_OMID_NASER [POSITION_2]: Titre principal "Omid Naser" -->
+        <div id="title-container-omid-naser" class="title-container">
+            <h1><strong>Omid</strong> Naser</h1>
+            <div class="title-row">
+                <h2>Lore Ipsum</h2>
+                <div class="title-photo-placeholder">
+                    <img src="assets/img/portrait.jpg" alt="Portrait Omid Naser" class="title-photo-img" />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    
-    <!-- Emplacement pour vos propres conteneurs -->
-  </main>
+    </main>
 
-  <div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>
 
-  <!-- Scripts locaux -->
-  <script src="assets/js/components.js"></script>
-  <script src="assets/js/menu_hamburger.js"></script>
+    <!-- Scripts locaux -->
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/menu_hamburger.js"></script>
 
-  <!-- Protection -->
-  <script>
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('copy', e => e.preventDefault());
-  </script>
+    <!-- Protection -->
+    <script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('copy', e => e.preventDefault());
+    </script>
 </body>
-</html>
+</html> 
