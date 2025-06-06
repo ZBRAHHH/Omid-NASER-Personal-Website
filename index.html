@@ -13,21 +13,8 @@
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Style pour l'indicateur de chargement -->
-    <style>
-        #header-container {
-            min-height: 60px;
-            position: relative;
-        }
-        #header-container:empty::before {
-            content: "Chargement du header...";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #666;
-        }
-    </style>
+    <!-- Préchargement de l'image -->
+    <link rel="preload" as="image" href="assets/img/portrait.jpg">
 </head>
 <body>
     <!-- CONTAINER_HEADER [POSITION_1]: En-tête du site avec navigation -->
@@ -40,7 +27,13 @@
             <div class="title-row">
                 <h2>Lore Ipsum</h2>
                 <div class="title-photo-placeholder">
-                    <img src="assets/img/portrait.jpg" alt="Portrait Omid Naser" class="title-photo-img" />
+                    <img src="assets/img/portrait.jpg" 
+                         alt="Portrait Omid Naser" 
+                         class="title-photo-img"
+                         loading="eager"
+                         decoding="async"
+                         width="256"
+                         height="256" />
                 </div>
             </div>
         </div>

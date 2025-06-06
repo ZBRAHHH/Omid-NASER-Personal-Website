@@ -45,26 +45,27 @@ body {
     text-align: left;
     margin-bottom: 2rem;
     width: 100%;
-    padding: 2rem 0 0 0;
+    padding: 1rem 0 0 0;
     border-bottom: 1.5px solid #e0e0e0;
   }
   
   .title-container h1 {
-    font-size: 36px; /* Taille de police réduite à 36px */
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Entre 32px et 56px */
     font-weight: 400;
     margin: 0;
     padding: 0;
     letter-spacing: -0.03em;
     line-height: 1.1;
     text-align: justify;
-    background: linear-gradient(270deg, #0d2762 0%, #1e48a1 30%, #1e56bc 60%, #3bb3f6 85%, #6ee7ff 95%, #0d2762 100%);
+    background: linear-gradient(270deg, #0d2762, #1e48a1, #1e56bc, #3bb3f6);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
     animation: gradient-move 4s ease-in-out infinite;
-    transition: transform 0.3s, background-position 0.3s;
+    transition: transform 0.3s;
+    will-change: background-position, transform;
   }
   
   .title-container h1 strong {
@@ -109,6 +110,20 @@ body {
     z-index: 1000;
     box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
     font-size: 1.15rem;
+  }
+  
+  #header-container {
+    min-height: 30px;
+    position: relative;
+  }
+  
+  #header-container:empty::before {
+    content: "Chargement du header...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
   }
   
   .logo {
@@ -161,7 +176,7 @@ body {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.4rem); /* Taille de base entre 16px et 22.4px */
     padding: 1rem 0;
     margin: 0.5rem 0;
     transition: all 0.3s ease;
@@ -255,7 +270,7 @@ body {
     nav a {
       width: 100%;
       text-align: left;
-      font-size: 1.1rem;
+      font-size: 1.1rem; /* Taille fixe pour mobile */
       margin: 0;
       padding: 0.75rem 5%;
       border-radius: 0.25rem;
@@ -594,10 +609,9 @@ h1 + h2 {
 }
 
 .title-row h2 {
-  flex: 3;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* Entre 16px et 24px */
   margin: 0;
   font-weight: 400;
-  font-size: 16px;
   text-align: left;
 }
 
@@ -635,8 +649,6 @@ h1 + h2 {
 
 /* Variables globales pour la typographie */
 :root {
-    /* ... autres variables existantes ... */
-    
     /* Typography Scale */
     --font-size-min: 14px;    /* Taille minimale (mobile) */
     --font-size-max: 21px;    /* Taille maximale (desktop) */
@@ -662,13 +674,31 @@ footer .container {
 
 footer p {
     margin: 0;
-    font-size: var(--font-size-fluid);
+    font-size: 0.875rem; /* 14px par défaut */
     line-height: 1.5;
+}
+
+@media (min-width: 992px) {
+    footer p {
+        font-size: 0.9375rem; /* 15px pour les grands écrans */
+    }
+}
+
+@media (max-width: 768px) {
+    footer p {
+        font-size: 0.8125rem; /* 13px pour les tablettes */
+    }
+}
+
+@media (max-width: 480px) {
+    footer p {
+        font-size: 0.75rem; /* 12px pour les mobiles */
+    }
 }
 
 /* Styles pour le rendu Markdown dans les articles */
 .article-content h1 {
-    font-size: 32px;
+    font-size: clamp(2rem, 4vw, 3rem); /* Entre 32px et 48px */
     margin: 1.5rem 0 1rem;
     background: linear-gradient(to right, #3bb3f6, #0d2762);
     -webkit-background-clip: text;
@@ -677,32 +707,32 @@ footer p {
 }
 
 .article-content h2 {
-    font-size: 26px;
+    font-size: clamp(1.5rem, 3vw, 2.25rem); /* Entre 24px et 36px */
     margin: 1.5rem 0 1rem;
     color: #333333;
     font-weight: 700;
 }
 
 .article-content h3 {
-    font-size: 20px;
+    font-size: clamp(1.25rem, 2vw, 1.75rem); /* Entre 20px et 28px */
     margin: 1.5rem 0 1rem;
     color: #333333;
     font-weight: 700;
 }
 
 .article-content p {
-    font-size: 16px;
+    font-size: clamp(1rem, 1.5vw, 1.25rem); /* Entre 16px et 20px */
     margin-bottom: 1.5rem;
-    line-height: 1.4;
+    line-height: 1.6;
     color: #444444;
 }
 
 .article-content ul,
 .article-content ol {
-    font-size: 16px;
+    font-size: clamp(1rem, 1.5vw, 1.25rem); /* Entre 16px et 20px */
     margin: 1rem 0 1.5rem 2rem;
     color: #444444;
-    line-height: 1.4;
+    line-height: 1.6;
 }
 
 .article-content li {
@@ -809,4 +839,53 @@ footer p {
 .dark-mode .article-content {
     background: #1a1a1a;  /* Gris très foncé pour le fond en mode sombre */
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Media queries pour ajuster les tailles sur différents écrans */
+@media (min-width: 768px) {
+    .title-container h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem); /* Plus grand sur tablette et desktop */
+    }
+    
+    .title-row h2 {
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    }
+}
+
+@media (min-width: 1200px) {
+    .title-container h1 {
+        font-size: clamp(3rem, 7vw, 4.5rem); /* Encore plus grand sur grands écrans */
+    }
+    
+    .title-row h2 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+}
+
+/* Media queries pour le menu desktop */
+@media (min-width: 901px) {
+    nav {
+        width: clamp(350px, 25vw, 450px); /* Plus large sur desktop, entre 350px et 450px */
+        padding: 6rem 2.5rem 2rem;
+    }
+    
+    nav a {
+        font-size: clamp(1.4rem, 2vw, 1.8rem); /* Plus grand sur desktop, entre 22.4px et 28.8px */
+        padding: 1.5rem 0;
+        margin: 1rem 0;
+        letter-spacing: 0.02em;
+    }
+}
+
+/* Media queries pour les très grands écrans */
+@media (min-width: 1600px) {
+    nav {
+        width: clamp(400px, 30vw, 500px); /* Encore plus large sur très grands écrans */
+    }
+    
+    nav a {
+        font-size: clamp(1.6rem, 2.5vw, 2rem); /* Encore plus grand sur très grands écrans */
+        padding: 1.75rem 0;
+        margin: 1.25rem 0;
+    }
 }
