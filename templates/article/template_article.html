@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <style>
         /* Variables CSS pour les couleurs de l'article */
@@ -34,43 +35,16 @@
             --article-metadata-color-dark: #e0e0e0;
             --article-metadata-border-dark: #444;
             --article-bg-dark: #1a1a1a;
-
-            color: var(--article-text-color-dark);
-            background-color: var(--article-bg-dark);
         }
 
-        /* Reset et styles de base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            line-height: 1.6;
-            color: var(--article-text-color-light);
-            background-color: var(--article-bg-light);
-        }
-
-        /* Container principal */
-        .article-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        /* Contenu de l'article */
+        /* Styles spécifiques aux articles */
         .article-content {
             background: var(--article-bg-light);
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin: 0 auto;
         }
 
-        /* Styles pour les éléments générés par le Markdown */
         .article-content h1 {
             font-size: 32px;
             margin: 3rem 0 2rem;
@@ -135,6 +109,7 @@
 
         /* Mode sombre */
         .dark-mode .article-content {
+            background: var(--article-bg-dark);
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
@@ -178,61 +153,25 @@
             border-top-color: var(--article-metadata-border-dark);
             color: var(--article-metadata-color-dark);
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .article-content {
-                padding: 1.5rem;
-            }
-
-            .article-content h1 {
-                font-size: 32px;
-            }
-
-            .article-content h2 {
-                font-size: 28px;
-            }
-
-            .article-content h3 {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .article-content h1 {
-                font-size: 28px;
-            }
-
-            .article-content h2 {
-                font-size: 24px;
-            }
-
-            .article-content h3 {
-                font-size: 22px;
-            }
-
-            .article-content p,
-            .article-content ul,
-            .article-content ol,
-            .article-content blockquote {
-                font-size: 18px;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- CONTAINER_HEADER [POSITION_1]: En-tête du site avec navigation -->
     <div id="header-container"></div>
 
-    <main class="article-container">
-        <article class="article-content">
-            <!-- Le contenu de l'article sera injecté ici -->
-            <div id="test_markdown"></div>
+    <main class="layout-container">
+        <article class="layout-row">
+            <div class="layout-col-12">
+                <div class="article-content">
+                    <!-- Le contenu de l'article sera injecté ici -->
+                    <div id="test_markdown"></div>
 
-            <!-- Métadonnées (Date et Catégorie/Tags) -->
-            <div class="article-metadata-footer">
-                <p><strong>Date :</strong> [Date de l'article]</p>
-                <p><strong>Catégorie/Tags :</strong> [Tags de l'article]</p>
+                    <!-- Métadonnées (Date et Catégorie/Tags) -->
+                    <div class="article-metadata-footer">
+                        <p><strong>Date :</strong> [Date de l'article]</p>
+                        <p><strong>Catégorie/Tags :</strong> [Tags de l'article]</p>
+                    </div>
+                </div>
             </div>
         </article>
     </main>

@@ -1,0 +1,32 @@
+/* Variables globales pour la typographie */
+:root {
+    /* ... autres variables existantes ... */
+    
+    /* Typography Scale */
+    --font-size-min: 12px;    /* Taille minimale (mobile) */
+    --font-size-max: 24px;    /* Taille maximale (desktop) - augmenté de 21px à 24px */
+    --font-size-fluid: clamp(var(--font-size-min), 1.5vw + 0.5rem, var(--font-size-max)); /* Augmenté le multiplicateur de 1.2 à 1.5 */
+}
+
+/* FOOTER */
+footer {
+    background: linear-gradient(to right, #0d2762, #1e48a1, #1e56bc);
+    color: white;
+    padding: 0.1rem 0;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+footer p {
+    margin: 0;
+    font-size: var(--font-size-fluid);
+    line-height: 1.5;
+} 
