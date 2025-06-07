@@ -124,6 +124,12 @@ body {
     color: #fff;
   }
 
+  .dark-mode .title-container h2,
+  .dark-mode .title-container h3,
+  .dark-mode .title-container p {
+    color: #ffffff;
+  }
+
   .dark-mode .title-container h2 {
     color: #ffffff; /* Blanc pur pour les h2 */
   }
