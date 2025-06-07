@@ -59,14 +59,14 @@ function extractFrontmatter(content) {
 /**
  * Fetches a Markdown file and converts it to HTML using marked.js
  */
-async function renderMarkdownArticle(markdownFilePath, targetElementId) {
+async function renderMarkdownArticle(markdownFilePath, targetSelector) {
     console.log('Début de renderMarkdownArticle');
     console.log('Chemin du fichier:', markdownFilePath);
-    console.log('ID de l\'élément cible:', targetElementId);
+    console.log('Sélecteur cible:', targetSelector);
 
-    const targetElement = document.getElementById(targetElementId);
+    const targetElement = document.querySelector(targetSelector);
     if (!targetElement) {
-        console.error(`Target element with ID '${targetElementId}' not found.`);
+        console.error(`Target element with selector '${targetSelector}' not found.`);
         return;
     }
     console.log('Élément cible trouvé:', targetElement);
@@ -109,25 +109,17 @@ async function renderMarkdownArticle(markdownFilePath, targetElementId) {
         console.log('HTML généré:', renderedHTML.substring(0, 100) + '...');
 
         // 4. Inject the rendered HTML into the target element
-        targetElement.innerHTML = renderedHTML;
+        targetElement.innerHTML = `<div class="layout-article-content article-content">${renderedHTML}</div>`;
         console.log('HTML injecté dans l\'élément cible');
 
         // 5. Mettre à jour les métadonnées
-        // Trouver le conteneur parent de l'article
-        const articleContainer = targetElement.closest('.article-content');
-        if (!articleContainer) {
-            console.error('Conteneur article non trouvé');
-            return;
-        }
-
-        // Trouver les éléments de métadonnées dans le footer
-        const metadataDateElement = articleContainer.querySelector('.article-metadata-footer p:nth-child(1)');
+        const metadataDateElement = document.getElementById('article-date');
         if (metadataDateElement && frontmatter.date) {
-            metadataDateElement.innerHTML = `<strong>Date :</strong> ${frontmatter.date}`;
+            metadataDateElement.textContent = frontmatter.date;
             console.log('Date mise à jour:', frontmatter.date);
         }
 
-        const metadataTagsElement = articleContainer.querySelector('.article-metadata-footer p:nth-child(2)');
+        const metadataTagsElement = document.getElementById('article-tags');
         if (metadataTagsElement && (frontmatter.tags || frontmatter.categorie)) {
             let tagsText = '';
             if (frontmatter.categorie) tagsText += frontmatter.categorie;
@@ -136,7 +128,7 @@ async function renderMarkdownArticle(markdownFilePath, targetElementId) {
                 if (tagsText) tagsText += ' - ';
                 tagsText += Array.isArray(frontmatter.tags) ? frontmatter.tags.join(', ') : frontmatter.tags;
             }
-            metadataTagsElement.innerHTML = `<strong>Catégorie/Tags :</strong> ${tagsText}`;
+            metadataTagsElement.textContent = tagsText;
             console.log('Tags mis à jour:', tagsText);
         }
 

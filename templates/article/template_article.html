@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Article</title>
+    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+</head>
+
+<body>
+    <!-- CONTAINER_HEADER [POSITION_1]: En-tête du site avec navigation -->
+    <div id="header-container"></div>
+
+    <!-- CONTAINER_ARTICLE [POSITION_2]: Contenu de l'article -->
+    <main class="layout-container layout-article-content article-content">
+        <!-- Le contenu de l'article sera injecté ici -->
+    </main>
+
+    <!-- Métadonnées de l'article -->
+    <div class="layout-container article-metadata-footer">
+        <p><strong>Date :</strong> <span id="article-date">[Date de l'article]</span></p>
+        <p><strong>Catégorie/Tags :</strong> <span id="article-tags">[Tags de l'article]</span></p>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts externes -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Scripts locaux -->
+    <script src="../../assets/js/dependencies.js"></script>      <!-- Dépendances externes et utilitaires -->
+    <script src="../../assets/js/components.js"></script>        <!-- Gestion des composants (header, footer) -->
+    <script src="../../assets/js/menu_hamburger.js"></script>    <!-- Gestion du menu mobile -->
+    <script src="../../assets/js/render_markdown.js"></script>   <!-- Fonction de conversion Markdown vers HTML -->
+
+    <!-- Protection -->
+    <script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('copy', e => e.preventDefault());
+    </script>
+
+    <!-- Script de rendu de l'article -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMarkdownArticle('./template_article.md', '.layout-article-content.article-content');
+        });
+    </script>
+
+</body>
+
+</html> 

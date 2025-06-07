@@ -26,13 +26,19 @@
 
     <div id="footer-placeholder"></div>
 
-    <!-- Scripts -->
+    <!-- Scripts externes -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Scripts locaux -->
+    <script src="assets/js/dependencies.js"></script>
     <script src="assets/js/components.js"></script>
     <script src="assets/js/menu_hamburger.js"></script>
+    <script src="assets/js/render_markdown.js"></script>
+
+    <!-- Protection -->
     <script>
-        // Protection contenu
-        document.addEventListener("contextmenu", e => e.preventDefault());
-        document.addEventListener("copy", e => e.preventDefault());
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('copy', e => e.preventDefault());
     </script>
 </body>
 </html>

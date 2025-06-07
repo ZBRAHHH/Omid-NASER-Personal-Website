@@ -40,6 +40,14 @@
     box-sizing: border-box;
 }
 
+/* Article Container */
+.layout-article-content {
+    text-align: left;
+    margin-bottom: 2rem;
+    width: 100%;
+    padding: 1rem 0 0 0;
+}
+
 @media (min-width: 576px) {
     .layout-container {
         padding-right: 2rem;
