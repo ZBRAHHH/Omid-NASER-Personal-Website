@@ -124,6 +124,18 @@ body {
     color: #fff;
   }
 
+  .dark-mode .title-container h2 {
+    color: #ffffff; /* Blanc pur pour les h2 */
+  }
+
+  .dark-mode .title-container h3 {
+    color: #f8f8f8; /* Blanc très légèrement grisé pour les h3 */
+  }
+
+  .dark-mode .title-container p {
+    color: #f0f0f0; /* Blanc légèrement grisé pour les paragraphes, mais plus lumineux qu'avant */
+  }
+
   /* CONTAINER_HEADER [POSITION_1]: En-tête fixe */
   header {
     position: fixed;
