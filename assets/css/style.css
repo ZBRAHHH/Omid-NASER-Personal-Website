@@ -176,7 +176,7 @@ body {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
-    font-size: clamp(1rem, 1.5vw, 1.4rem); /* Taille de base entre 16px et 22.4px */
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     padding: 1rem 0;
     margin: 0.5rem 0;
     transition: all 0.3s ease;
@@ -951,4 +951,4 @@ footer p {
         padding: 1.75rem 0;
         margin: 1.25rem 0;
     }
-}
+  }
